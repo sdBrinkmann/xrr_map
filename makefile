@@ -30,7 +30,7 @@ $(BIN_DIR) $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 install:
-	install ./$(BIN_DIR)/$(BIN) $(PREFIX)/bin/$(BIN)
+	install $(BIN_DIR)/$(BIN) $(PREFIX)/bin/$(BIN)
 
 uninstall:
 	rm $(PREFIX)/bin/$(BIN)
