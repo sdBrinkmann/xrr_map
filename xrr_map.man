@@ -1,0 +1,29 @@
+.TH XRR_MAP 1 "23 October 2024" "Version 0.1"
+.SH NAME
+xrr_map - CLT for mapping wacom tablet to monitor(s)
+.SH SYNOPSIS
+.B xrr_map [-i] [-v | --version] [-h | --help]
+.br
+.B xrr_map -l
+.br \".B xrr_map -c \".br
+.B xrr_map -r
+.SH DESCRIPTION
+Map the area of a wacom tablet to one or multiple monitors for X Window System (X11). The default mode, when invoked without any options or with -i, allows for the interactive selection of both monitor and wacom input device to map.
+.PP
+There are no global options, rather each option invokes a seperate command, which is one the following:
+.PP
+.IP "-i"
+	interactive mode to select monitor & device to map
+.IP "-l | --list"
+	list all monitors and wacom devices
+.IP "-r | --reset"
+	reset mapping to all monitors
+.IP "-h | --help"
+	print out all command options
+.IP "-v | --version"
+	print out version number
+.SH AUTHOR
+Stefan D. Brinkmann
+.SH "See ALSO"
+.BR xsetwacom(1)
+.BR xrandr(1)
