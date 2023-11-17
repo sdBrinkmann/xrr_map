@@ -1,4 +1,4 @@
-// https://stackoverflow.com/questions/71266237/how-to-get-the-monitor-number-using-x11
+// xrr_mapMonitor
 
 
 #include "xrr.h"
@@ -17,10 +17,11 @@ void print_usage() {
   printf(
 	 "Usage: xrr [options]\n"
 	 "Options:\n"
-	 "-h | --help       show usage\n"
-	 "-v | --version    display version\n"
-	 "-l | --list       list devices and monitors\n"
-	 "-r | --reset      reset mapping of wacom devices\n"
+	 "-h | --help         show usage\n"
+	 "-v | --version      display version\n"
+	 "-l | --list         list devices and monitors\n"
+	 "-r | --reset        reset mapping of wacom devices\n"
+	 "-i | --interactive  interactive mode (default)\n"
 	 );
 }
 
@@ -34,17 +35,18 @@ int main(int argc, char *argv[]) {
   int c = 0;
 
   static struct option long_options[] = {
-    {"help",    no_argument, 0, 'h'},
-    {"version", no_argument, 0, 'v'},
-    {"list",    no_argument, 0, 'l'},
-    {"reset",   no_argument, 0, 'r'},
+    {"help",        no_argument, 0, 'h'},
+    {"version",     no_argument, 0, 'v'},
+    {"list",        no_argument, 0, 'l'},
+    {"reset",       no_argument, 0, 'r'},
+    {"interactive", no_argument, 0, 'i'},
     {0, 0, 0, 0}
   };
 
   int option_index = 0;
   
   
-  while ((c = getopt_long(argc, argv, "hvl::r::", long_options, &option_index)) != -1) {
+  while ((c = getopt_long(argc, argv, "hvl::r::i", long_options, &option_index)) != -1) {
 
     switch (c) {
     case 'h':
@@ -62,6 +64,8 @@ int main(int argc, char *argv[]) {
     case 'r':
       resetMap();
       return 0;
+      break;
+    case 'i':
       break;
     default: print_usage();
       exit(EXIT_FAILURE);

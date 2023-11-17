@@ -5,6 +5,7 @@
 
 #include <string.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 
 /*
@@ -52,15 +53,21 @@ XDevice* SelectWacomDev(Display *display) {
   }
       
   printf("Type 1 to %d to select corresponding Wacom device to be mapped\n", w_ndevs);
- 
   int dn;
 
+  char c = '0';
+  
   while (true) {
-    scanf("%d",&dn);
-    if (dn > 0 && dn <= w_ndevs)
+    if (scanf("%d",&dn) == 0) {
+      printf("Invalid Input!\n");
+      do {c = getchar();} while (!isdigit(c));
+      ungetc(c, stdin);
+    }
+    else if (dn > 0 && dn <= w_ndevs)
       break;
-    else
+    else {
       printf("Please enter a valid number from 1 to %d \n", w_ndevs);
+    }
   }
 
   XDevice *device = XOpenDevice(display, devs[wacom_devs[dn-1]].id);
@@ -91,12 +98,18 @@ or type 0 to remap tablet to all active monitors\n",
 
   int choice;
 
+  char c = '0';
+  
   while (true) {
-    scanf("%d", &choice);
-    if (choice >= 0 && choice <= m_count)
+    if (scanf(" %d", &choice) == 0) {
+      printf("Invalid Input!\n");
+      do {c = getchar();} while (!isdigit(c));
+      ungetc(c, stdin);
+    }
+    else if (choice >= 0 && choice <= m_count)
       break;
     else
-      printf("Please enter a valid number from 1  to %d\n", m_count);
+      printf("Please enter a valid number from 1 to %d\n", m_count);
   }
 
   return choice;
