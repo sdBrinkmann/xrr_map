@@ -1,8 +1,9 @@
 # xrr_map
-Command line tool written in C for mapping Wacom tablets to selected monitor(s). The default mode allows for the interactive selection of both monitor and wacom input to map. Only works for X11.
+Command line tool written in C for mapping Wacom tablets to selected monitor(s). The default mode allows for the interactive selection of both monitor and wacom input to map. 
+Only works for X11 with respective wacom drivers (`xf86-input-wacom`).
 
 ### Prerequisites 
-`xf86-input-wacom`, `xibxi`, `libxrandr`
+`libXi`, `libX11`, `libXrandr`
 
 ### Install
 `make & make install`
